@@ -3,9 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:spa/provider/location_provider.dart';
 import 'homeScreen.dart'; // create this file with the above provider code
 
-class LocationScreen extends StatelessWidget {
+class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
+  @override
+  State<LocationScreen> createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

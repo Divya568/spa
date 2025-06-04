@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../provider/booking_provider.dart';
 
 
-class BookingConfirmationDialog extends StatelessWidget {
+class BookingConfirmationDialog extends StatefulWidget {
   final DateTime bookingDateTime;
   final List<String> services;
 
@@ -16,10 +16,15 @@ class BookingConfirmationDialog extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<BookingConfirmationDialog> createState() => _BookingConfirmationDialogState();
+}
+
+class _BookingConfirmationDialogState extends State<BookingConfirmationDialog> {
+  @override
   Widget build(BuildContext context) {
-    final formattedDate = DateFormat('EEEE, d MMM yyyy').format(bookingDateTime);
-    final formattedTime = DateFormat('h:mm a').format(bookingDateTime);
-    final servicesStr = services.join(" and ");
+    final formattedDate = DateFormat('EEEE, d MMM yyyy').format(widget.bookingDateTime);
+    final formattedTime = DateFormat('h:mm a').format(widget.bookingDateTime);
+    final servicesStr = widget.services.join(" and ");
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),

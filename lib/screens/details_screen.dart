@@ -41,8 +41,11 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
             Positioned.fill(
               child: Column(
                 children: [
-                  Container(height: 200, decoration: BoxDecoration(gradient: _whiteTopGradient())),
-                  Expanded(child: Container(color: Colors.white.withOpacity(0.95))),
+                  Container(
+                      height: 200,
+                      decoration: BoxDecoration(gradient: _whiteTopGradient())),
+                  Expanded(
+                      child: Container(color: Colors.white.withOpacity(0.95))),
                 ],
               ),
             ),
@@ -68,24 +71,26 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                                 color: Colors.white,
                                 border: Border.all(color: Colors.grey.shade300),
                               ),
-                              child: const Icon(Icons.arrow_back_ios, color: Color(0xFF9C733C), size: 20),
+                              child: const Icon(Icons.arrow_back_ios,
+                                  color: Color(0xFF9C733C), size: 20),
                             ),
                           ),
                           const SizedBox(width: 12),
                         ],
                       ),
                     ),
-
                     const SizedBox(height: 36),
                     _storeCard(),
                     const SizedBox(height: 16),
                     _buildChips(),
                     const SizedBox(height: 12),
-
                     _buildExpandableSection("Massage Therapy", services: [
-                      _serviceTile("Swedish Massage", "₹4,000", "60 Mins", "Walk-in"),
-                      _serviceTile("Deep Tissue Massage", "₹6,200", "60 Mins", "Walk-in"),
-                      _serviceTile("Hot Stone Massage", "₹8,500", "60 Mins", "Homevisit"),
+                      _serviceTile(
+                          "Swedish Massage", "₹4,000", "60 Mins", "Walk-in"),
+                      _serviceTile("Deep Tissue Massage", "₹6,200", "60 Mins",
+                          "Walk-in"),
+                      _serviceTile("Hot Stone Massage", "₹8,500", "60 Mins",
+                          "Homevisit"),
                     ]),
                     _buildExpandableSection("Hair Cut Wash & Style"),
                     _buildExpandableSection("Nail Bar"),
@@ -95,13 +100,13 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
             ),
 
             // Bottom Check out bar
-            // Bottom Check out bar
             Positioned(
               bottom: 0,
               left: 0,
               right: 0,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 8)],
@@ -109,14 +114,17 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("${context.watch<CartProvider>().items.length} Services added",style: const TextStyle(fontWeight: FontWeight.w600)),
+                    Text(
+                        "${context.watch<CartProvider>().items.length} Services added",
+                        style: const TextStyle(fontWeight: FontWeight.w600)),
 
-                   // Text("${_cartItems.length} Services added", style: const TextStyle(fontWeight: FontWeight.w600)),
+                    // Text("${_cartItems.length} Services added", style: const TextStyle(fontWeight: FontWeight.w600)),
 
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF9C733C),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () async {
                         final removedItemName = await Navigator.push(
@@ -124,20 +132,12 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                           MaterialPageRoute(builder: (context) => CartScreen()),
                         );
 
-                        // final removedItemName = await Navigator.push<String>(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => CartScreen(cartItems: _cartItems),
-                        //   ),
-                        // );
-
                         if (removedItemName != null) {
                           setState(() {
-                            _cartItems.removeWhere((item) => item.name == removedItemName);
+                            _cartItems.removeWhere(
+                                (item) => item.name == removedItemName);
                           });
                         }
-
-
                       },
                       child: const Text("Check out"),
                     ),
@@ -151,13 +151,14 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
     );
   }
 
-
   LinearGradient _whiteTopGradient() => const LinearGradient(
-    colors: [Colors.white, Colors.white10],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-  );
-  Widget _iconText(IconData icon, String text, {Color iconColor = Colors.grey}) {
+        colors: [Colors.white, Colors.white10],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      );
+
+  Widget _iconText(IconData icon, String text,
+      {Color iconColor = Colors.grey}) {
     return Row(
       children: [
         Icon(icon, size: 16, color: iconColor),
@@ -167,7 +168,6 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
       ],
     );
   }
-
 
   Widget _storeCard() {
     final spa = widget.spa;
@@ -195,7 +195,9 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(spa.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text(spa.name,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16)),
                     const SizedBox(height: 4),
                     Wrap(
                       spacing: 2,
@@ -203,10 +205,10 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                       children: [
                         _iconText(Icons.location_on, spa.location),
                         _iconText(Icons.route, spa.distance),
-                        _iconText(Icons.star, spa.rating, iconColor: Colors.amber),
+                        _iconText(Icons.star, spa.rating,
+                            iconColor: Colors.amber),
                       ],
                     )
-
                   ],
                 ),
               ),
@@ -232,11 +234,13 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                         children: [
                           TextSpan(
                             text: spa.discount,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 13),
                           ),
                           const TextSpan(
                             text: "\nGet ₹500 off on orders above 100/-",
-                            style: TextStyle(fontSize: 12, color: Colors.black54),
+                            style:
+                                TextStyle(fontSize: 12, color: Colors.black54),
                           )
                         ],
                       ),
@@ -251,7 +255,6 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
     );
   }
 
-
   Widget _buildChips() {
     final filters = ["All", "Home-visit", "Walk-in", "Male", "Female"];
     return Padding(
@@ -264,10 +267,18 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
           itemBuilder: (_, i) {
             final isSelected = i == 0;
             return Chip(
-              label: Text(filters[i], style: TextStyle(fontSize: 13, color: isSelected ? Color(0xFF9C733C) : Color(0xFF9C733C))),
-              backgroundColor: isSelected ? const Color(0xFFE8D5B5) : Colors.grey.shade200,
+              label: Text(filters[i],
+                  style: TextStyle(
+                      fontSize: 13,
+                      color:
+                          isSelected ? Color(0xFF9C733C) : Color(0xFF9C733C))),
+              backgroundColor:
+                  isSelected ? const Color(0xFFE8D5B5) : Colors.grey.shade200,
               shape: StadiumBorder(
-                side: BorderSide(color: isSelected ? const Color(0xFF9C733C) :Color(0xFF9C733C)),
+                side: BorderSide(
+                    color: isSelected
+                        ? const Color(0xFF9C733C)
+                        : Color(0xFF9C733C)),
               ),
             );
           },
@@ -276,7 +287,6 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
       ),
     );
   }
-
 
   Widget _buildExpandableSection(String title, {List<Widget>? services}) {
     final isOpen = _expanded[title] ?? false;
@@ -288,12 +298,15 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
             onTap: () => setState(() => _expanded[title] = !isOpen),
             child: Row(
               children: [
-                Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Text(title,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.bold)),
                 const Spacer(),
                 AnimatedRotation(
                   turns: isOpen ? 0.5 : 0.0,
                   duration: const Duration(milliseconds: 200),
-                  child: const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                  child:
+                      const Icon(Icons.keyboard_arrow_down, color: Colors.grey),
                 ),
               ],
             ),
@@ -330,10 +343,12 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("$price · $duration · $type", style: const TextStyle(fontSize: 13)),
+                  Text("$price · $duration · $type",
+                      style: const TextStyle(fontSize: 13)),
                   ElevatedButton(
                     onPressed: () {
-                      final item = CartItem(name: name, price: price, duration: duration);
+                      final item = CartItem(
+                          name: name, price: price, duration: duration);
                       if (selected) {
                         cartProvider.removeItemByName(name);
                       } else {
@@ -341,10 +356,14 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: selected ? Colors.grey.shade300 : const Color(0xFF9C733C),
+                      backgroundColor: selected
+                          ? Colors.grey.shade300
+                          : const Color(0xFF9C733C),
                       foregroundColor: selected ? Colors.black : Colors.white,
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6)),
                     ),
                     child: Text(selected ? "Remove" : "Add"),
                   )
@@ -356,6 +375,4 @@ class _StoreProfileScreenState extends State<StoreProfileScreen> {
       },
     );
   }
-
-
 }

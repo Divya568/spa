@@ -4,9 +4,13 @@ import '../provider/cart_provider.dart';
 import 'confirmation_dailogue.dart';
 import '../provider/booking_provider.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
  CartScreen({super.key});
 
+  @override
+  State<CartScreen> createState() => _CartScreenState();
+}
+class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
 
@@ -116,8 +120,8 @@ class CartScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         color: Colors.grey.shade100,
       ),
-      child: Row(
-        children: const [
+      child: const Row(
+        children: [
           Icon(Icons.local_offer_outlined, color: Colors.black),
           SizedBox(width: 10),
           Expanded(child: Text("Apply Coupon", style: TextStyle(fontSize: 15))),
@@ -228,5 +232,4 @@ class CartScreen extends StatelessWidget {
      ),
    );
  }
-
 }
